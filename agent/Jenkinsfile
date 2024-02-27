@@ -20,6 +20,7 @@ pipeline{
                 sh '''
                    cd /home/ubuntu
                    mkdir yogu
+                   chmod 777 yogu
                 '''
             }
          }
