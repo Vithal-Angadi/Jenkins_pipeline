@@ -1,27 +1,30 @@
 pipeline{
     agent any
+    parameters{
+        string(name:'PARAM_STRING',defaultValue:'param',description:'THis is a string')
+    }
     stages{
         stage("Build"){
             steps{
-                sh 'sleep 5'
+                sh 'echo "$PARAM_STRING"'
             }
-         }
-        stage("Test"){
-            steps{
-                sh '''
-                   #!/bin/bash
-                   ls -lrt
-                   sleep 10
-                '''
-            }
-         }
-         stage("Deploy"){
-            steps{
-                sh '''
-                   cd /home/ubuntu
-                   chmod 777 yogu
-                '''
-            }
-         }
+        }
+        // stage("Test"){
+            // steps{
+                // sh '''
+                //    #!/bin/bash
+                //    ls -lrt
+                //    sleep 10
+                // '''
+            // }
+        //  }
+        //  stage("Deploy"){
+        //     steps{
+        //         sh '''
+        //            cd /home/ubuntu
+        //            chmod 777 yogu
+        //         '''
+        //     }
+        //  }
     }
 }
