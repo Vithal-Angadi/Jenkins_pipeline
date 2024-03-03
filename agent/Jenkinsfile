@@ -9,9 +9,16 @@ pipeline{
     stages{
         stage("Checout"){
             steps{
-                checkout([$class: 'GitSCM', 
-                          branches: [[name: '*/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/Vithal-Angadi/Jenkins_pipeline.git']]])
+                withCredentials([usernamePassword(credentialId:'test_up',usernameVariable:'USERNAME',passwordVariable:'PASSWORD')]){
+                    echo "$USERNAME $PASSWORD"
+                    sh '''
+                        echo $USERNAME $PASSWORD
+                    '''
+                }
+                // checkout([$class: 'GitSCM', 
+                //         branches: [[name: '*/main']],
+                //         userRemoteConfigs: [[url: 'https://github.com/Vithal-Angadi/Jenkins_pipeline.git'
+                //         ]]])
             }
         }
     // stages{
