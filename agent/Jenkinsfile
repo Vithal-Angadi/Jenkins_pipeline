@@ -1,17 +1,25 @@
 pipeline{
     agent any
-    triggers{
-        cron('*/59 * * * *')
-    }
-    parameters{
-        string(name:'PARAM_STRING',defaultValue:'input_param',description:'THis is a string')
-    }
+    // triggers{
+    //     cron('*/59 * * * *')
+    // }
+    // parameters{
+    //     string(name:'PARAM_STRING',defaultValue:'input_param',description:'THis is a string')
+    // }
     stages{
-        stage("Build"){
+        stage("Checout"){
             steps{
-                sh 'echo "$PARAM_STRING"'
+                checkout([$class: 'GitSCM', 
+                          branches: [[name: '*/main']],
+                          userRemoteConfigs: [[url: 'https://github.com/Vithal-Angadi/Jenkins_pipeline.git']]])
             }
         }
+    // stages{
+    //     stage("Build"){
+    //         steps{
+    //             sh 'echo "$PARAM_STRING"'
+    //         }
+    //     }
         // stage("Test"){
             // steps{
                 // sh '''
