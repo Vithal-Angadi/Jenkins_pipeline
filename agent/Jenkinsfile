@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage("Checout"){
             steps{
-                withCredentials([usernamePassword(credentialId:'test_up',usernameVariable:'USERNAME',passwordVariable:'PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId:'test_up',usernameVariable:'USERNAME',passwordVariable:'PASSWORD')]){
                     echo "$USERNAME $PASSWORD"
                     sh '''
                         echo $USERNAME $PASSWORD
